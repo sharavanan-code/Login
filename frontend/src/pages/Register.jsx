@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import { register } from '../services/authService';
 import { useNavigate } from 'react-router-dom';
+import { register } from '../services/authService';
+import '../styles/Form.css';
 
 function Register() {
   const [name, setName] = useState('');
@@ -11,30 +12,26 @@ function Register() {
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
-      const res = await register({ name, email, password });
+      await register({ name, email, password });
       alert('Registration successful');
-      console.log(res.data);
       navigate('/login');
     } catch (err) {
       alert(err.response?.data?.message || 'Registration failed');
     }
   };
 
-  const handleGoToLogin = () => {
-    navigate('/login'); // 👈 go to login page
-  };
-
   return (
-    <form onSubmit={handleRegister}>
-      <h2>Register</h2>
-      <input type="text" placeholder="Name" onChange={e => setName(e.target.value)} />
-      <input type="email" placeholder="Email" onChange={e => setEmail(e.target.value)} />
-      <input type="password" placeholder="Password" onChange={e => setPassword(e.target.value)} />
-      <div style={{ display: 'flex', gap: '10px' }}>
-        <button type="submit">Register</button>
-        <button type="button" onClick={handleGoToLogin}>Login</button>
+    <div className="full-page">
+      <div className="form-card">
+        <h2>Register</h2>
+        <form onSubmit={handleRegister}>
+          <input type="text" placeholder="Name" onChange={e => setName(e.target.value)} />
+          <input type="email" placeholder="Email" onChange={e => setEmail(e.target.value)} />
+          <input type="password" placeholder="Password" onChange={e => setPassword(e.target.value)} />
+          <button type="submit">Register</button>
+        </form>
       </div>
-    </form>
+    </div>
   );
 }
 

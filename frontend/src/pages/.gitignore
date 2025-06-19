@@ -1,0 +1,19 @@
+# Ignore node_modules in all subfolders
+**/node_modules/
+
+# Ignore .env files in all subfolders
+**/.env
+
+# Ignore dist folder in frontend (Vite build)
+frontend/dist/
+
+# Logs
+*.log
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Editor folders
+.vscode/
+.idea/
